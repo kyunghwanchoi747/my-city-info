@@ -14,7 +14,7 @@ async function main() {
     process.exit(1);
   }
 
-  const filePath = path.join(process.cwd(), 'public/data/local-info.json');
+  const filePath = path.join(process.cwd(), 'public/data/city-info.json');
 
   // Load existing data
   let existingItems = [];
@@ -23,7 +23,7 @@ async function main() {
       const content = fs.readFileSync(filePath, 'utf8');
       existingItems = JSON.parse(content);
     } catch (e) {
-      console.error('Failed to parse existing local-info.json, keeping it as empty array:', e);
+      console.error('Failed to parse existing city-info.json, keeping it as empty array:', e);
     }
   }
 
@@ -141,8 +141,13 @@ ${JSON.stringify(targetItem, null, 2)}`;
   }
 
   // Set unique ID in Javascript to guarantee safety
-  const nextId = existingItems.length > 0 ? Math.max(...existingItems.map(x => Number(x.id) || 0)) + 1 : 1;
-  processedItem.id = nextId;
+  const categoryKey = processedItem.category === '행사' ? 'event' : 'benefit';
+  const categoryItems = existingItems.filter(x => String(x.id).startsWith(categoryKey));
+  const maxNum = categoryItems.reduce((max, item) => {
+    const num = parseInt(String(item.id).split('-')[1]);
+    return !isNaN(num) && num > max ? num : max;
+  }, 0);
+  processedItem.id = `${categoryKey}-${maxNum + 1}`;
 
   // Append new item to existing list
   existingItems.push(processedItem);
@@ -157,7 +162,7 @@ ${JSON.stringify(targetItem, null, 2)}`;
     fs.writeFileSync(filePath, JSON.stringify(existingItems, null, 2), 'utf8');
     console.log(`Successfully added: ${processedItem.name} (ID: ${processedItem.id})`);
   } catch (error) {
-    console.error('Failed to save to local-info.json:', error);
+    console.error('Failed to save to city-info.json:', error);
     process.exit(1);
   }
 }

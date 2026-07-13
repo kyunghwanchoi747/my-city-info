@@ -9,7 +9,7 @@ async function main() {
     process.exit(1);
   }
 
-  const localInfoPath = path.join(process.cwd(), 'public/data/local-info.json');
+  const localInfoPath = path.join(process.cwd(), 'public/data/city-info.json');
   const postsDir = path.join(process.cwd(), 'src/content/posts');
 
   // Ensure posts directory exists
@@ -19,7 +19,7 @@ async function main() {
 
   // 1. Load local info data
   if (!fs.existsSync(localInfoPath)) {
-    console.error('Error: local-info.json does not exist.');
+    console.error('Error: city-info.json does not exist.');
     process.exit(1);
   }
 
@@ -27,12 +27,12 @@ async function main() {
   try {
     localInfo = JSON.parse(fs.readFileSync(localInfoPath, 'utf8'));
   } catch (e) {
-    console.error('Error parsing local-info.json:', e);
+    console.error('Error parsing city-info.json:', e);
     process.exit(1);
   }
 
   if (localInfo.length === 0) {
-    console.error('Error: local-info.json is empty.');
+    console.error('Error: city-info.json is empty.');
     process.exit(1);
   }
 
@@ -46,7 +46,8 @@ async function main() {
   for (const file of existingFiles) {
     const fileContent = fs.readFileSync(path.join(postsDir, file), 'utf8');
     const titleMatch = fileContent.match(/title:\s*["']?([^"\n\r']+)["']?/);
-    if (titleMatch && titleMatch[1].trim() === targetItem.name.trim()) {
+    const hasNameMatch = titleMatch && (titleMatch[1].includes(targetItem.name) || targetItem.name.includes(titleMatch[1]));
+    if (hasNameMatch || fileContent.includes(targetItem.name)) {
       alreadyWritten = true;
       break;
     }
