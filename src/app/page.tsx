@@ -51,6 +51,7 @@ export default async function Home() {
           <nav className="flex gap-4 text-sm font-medium text-neutral-600">
             <a href="#events" className="hover:text-amber-600 transition-colors">행사/축제</a>
             <a href="#benefits" className="hover:text-amber-600 transition-colors">지원금/혜택</a>
+            <Link href="/blog" className="hover:text-amber-600 transition-colors">블로그</Link>
           </nav>
         </div>
       </header>
@@ -126,7 +127,7 @@ export default async function Home() {
                 </div>
 
                 <Link 
-                  href={`/info/${event.id}`}
+                  href="/blog"
                   className="mt-4 block w-full text-center bg-amber-500 text-white font-semibold py-2.5 rounded-xl hover:bg-amber-600 transition-colors text-sm shadow-sm"
                 >
                   자세히 보기
@@ -187,7 +188,7 @@ export default async function Home() {
                 </div>
 
                 <Link 
-                  href={`/info/${benefit.id}`}
+                  href="/blog"
                   className="mt-4 block w-full text-center bg-emerald-600 text-white font-semibold py-2.5 rounded-xl hover:bg-emerald-700 transition-colors text-sm shadow-sm"
                 >
                   혜택 신청하기
