@@ -29,7 +29,8 @@ export default function BlogListPage() {
           </div>
           <nav className="flex gap-4 text-sm font-medium text-neutral-600">
             <Link href="/" className="hover:text-amber-600 transition-colors">홈</Link>
-            <Link href="/blog" className="text-amber-600 font-semibold transition-colors">블로그</Link>
+            <Link href="/blog" className="hover:text-amber-600 transition-colors">블로그</Link>
+            <Link href="/about" className="hover:text-amber-600 transition-colors">소개</Link>
           </nav>
         </div>
       </header>

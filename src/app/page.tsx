@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 
 interface LocalInfoItem {
   id: string;
@@ -52,6 +53,7 @@ export default async function Home() {
             <a href="#events" className="hover:text-amber-600 transition-colors">행사/축제</a>
             <a href="#benefits" className="hover:text-amber-600 transition-colors">지원금/혜택</a>
             <Link href="/blog" className="hover:text-amber-600 transition-colors">블로그</Link>
+            <Link href="/about" className="hover:text-amber-600 transition-colors">소개</Link>
           </nav>
         </div>
       </header>
@@ -87,11 +89,34 @@ export default async function Home() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event) => (
-              <div 
-                key={event.id}
-                className="group flex flex-col bg-white rounded-2xl border border-amber-100/80 p-6 shadow-sm hover:shadow-md hover:border-amber-200 hover:-translate-y-0.5 transition-all duration-200"
-              >
+            {events.map((event) => {
+              const eventSchema = {
+                "@context": "https://schema.org",
+                "@type": "Event",
+                "name": event.name,
+                "startDate": event.startDate,
+                "endDate": event.endDate,
+                "location": {
+                  "@type": "Place",
+                  "name": event.location,
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "성남시",
+                    "addressRegion": "경기도",
+                    "addressCountry": "KR"
+                  }
+                },
+                "description": event.summary
+              };
+              return (
+                <div 
+                  key={event.id}
+                  className="group flex flex-col bg-white rounded-2xl border border-amber-100/80 p-6 shadow-sm hover:shadow-md hover:border-amber-200 hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+                  />
                 <div className="flex justify-between items-start gap-2 mb-3">
                   <span className="bg-orange-50 text-orange-700 text-xs font-semibold px-2.5 py-1 rounded-md">
                     {event.category}
@@ -133,9 +158,12 @@ export default async function Home() {
                   자세히 보기
                 </Link>
               </div>
-            ))}
+            );
+          })}
           </div>
         </section>
+
+        <AdBanner />
 
         {/* 2. 지원금/혜택 섹션 */}
         <section id="benefits" className="scroll-mt-20">
@@ -148,11 +176,26 @@ export default async function Home() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {benefits.map((benefit) => (
-              <div 
-                key={benefit.id}
-                className="group flex flex-col bg-white rounded-2xl border border-amber-100/80 p-6 shadow-sm hover:shadow-md hover:border-amber-200 hover:-translate-y-0.5 transition-all duration-200"
-              >
+            {benefits.map((benefit) => {
+              const serviceSchema = {
+                "@context": "https://schema.org",
+                "@type": "GovernmentService",
+                "name": benefit.name,
+                "description": benefit.summary,
+                "provider": {
+                  "@type": "GovernmentOrganization",
+                  "name": benefit.location || "성남시"
+                }
+              };
+              return (
+                <div 
+                  key={benefit.id}
+                  className="group flex flex-col bg-white rounded-2xl border border-amber-100/80 p-6 shadow-sm hover:shadow-md hover:border-amber-200 hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+                  />
                 <div className="flex justify-between items-start gap-2 mb-3">
                   <span className="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md">
                     {benefit.category}
@@ -194,7 +237,8 @@ export default async function Home() {
                   혜택 신청하기
                 </Link>
               </div>
-            ))}
+            );
+          })}
           </div>
         </section>
 
