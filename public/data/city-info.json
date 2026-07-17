@@ -119,5 +119,16 @@
     "target": "국제옵서버를 승선시킨 원양선사",
     "summary": "국제옵서버를 승선시킨 원양선사에 승선경비 및 활동 등을 지원",
     "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000008"
+  },
+  {
+    "id": "benefit-9",
+    "name": "합작수산물 관세 감면 추진",
+    "category": "혜택",
+    "startDate": "2024-05-15",
+    "endDate": "상시",
+    "location": "해양수산부",
+    "target": "○ 기획재정부령에서 정한 방법 또는 요건에 적합하게 채포한 수산물을 국내로 수입하는 자",
+    "summary": "적법하게 채포한 수산물을 국내로 수입하는 자에게 관세감면",
+    "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000010"
   }
 ]
