@@ -103,7 +103,22 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <footer className="bg-neutral-950 text-neutral-400 py-6 px-4 border-t border-neutral-800 text-sm text-center">
+          <p>
+            © 2026 성남시 생활 정보
+            {" | "}
+            <a href="/privacy" className="hover:text-white underline underline-offset-2 transition-colors">
+              개인정보처리방침
+            </a>
+            {" | "}
+            <a href="/about" className="hover:text-white underline underline-offset-2 transition-colors">
+              소개
+            </a>
+          </p>
+        </footer>
+      </body>
     </html>
   );
 }
