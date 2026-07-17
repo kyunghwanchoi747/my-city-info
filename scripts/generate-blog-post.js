@@ -88,7 +88,8 @@ tags: [태그1, 태그2, 태그3]
 
 (본문: 1000자 이상, 위의 글쓰기 규칙 준수)
 
-마지막 줄에 FILENAME: YYYY-MM-DD-keyword 형식으로 파일명도 출력해줘. 키워드는 영문으로.`;
+마지막 줄에 FILENAME: YYYY-MM-DD-keyword 형식으로 파일명도 출력해줘. 키워드는 영문으로.
+그 다음 줄에 PHOTO: (글 주제를 대표하는 영어 사진 검색어 1~2단어) 형식으로 출력해줘. 예: PHOTO: fishing boat. 검색어는 사진 사이트에서 검색할 구체적인 사물이나 풍경 단어로.`;
 
   console.log('Requesting Gemini to generate the blog post...');
   const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`;
@@ -132,8 +133,15 @@ tags: [태그1, 태그2, 태그3]
     filename += '.md';
   }
 
-  // Remove the FILENAME line from the final content
-  let content = text.replace(/FILENAME:\s*[^\s\n\r]+/i, '').trim();
+  // Extract PHOTO keyword and remove the PHOTO line from content
+  const photoMatch = text.match(/PHOTO:\s*([^\n\r]+)/i);
+  const photoKeyword = photoMatch ? photoMatch[1].trim() : null;
+
+  // Remove the FILENAME and PHOTO lines from the final content
+  let content = text
+    .replace(/FILENAME:\s*[^\s\n\r]+/i, '')
+    .replace(/PHOTO:\s*[^\n\r]+/i, '')
+    .trim();
 
   // Strip codeblock backticks if Gemini wrapped it
   if (content.startsWith('```')) {
@@ -167,6 +175,40 @@ tags: [태그1, 태그2, 태그3]
       }
     }
     content = [...frontmatterLines, '', ...bodyLines].join('\n');
+  }
+
+  // 4. Fetch photo from Pexels and insert into content
+  const pexelsApiKey = process.env.PEXELS_API_KEY;
+  if (pexelsApiKey && photoKeyword) {
+    try {
+      const pexelsUrl = `https://api.pexels.com/v1/search?query=${encodeURIComponent(photoKeyword)}&per_page=1&orientation=landscape`;
+      const pexelsRes = await fetch(pexelsUrl, {
+        headers: { Authorization: pexelsApiKey }
+      });
+      if (pexelsRes.ok) {
+        const pexelsData = await pexelsRes.json();
+        if (pexelsData.photos && pexelsData.photos.length > 0) {
+          const photo = pexelsData.photos[0];
+          const photoMarkdown = `![${photo.alt || photoKeyword}](${photo.src.large})\n*사진: [${photo.photographer}](${photo.photographer_url}), Pexels 제공*`;
+          // Insert photo block right after the closing --- of frontmatter
+          const frontmatterEnd = content.indexOf('---', 3);
+          if (frontmatterEnd !== -1) {
+            const afterFrontmatter = content.slice(frontmatterEnd + 3).trimStart();
+            content = content.slice(0, frontmatterEnd + 3) + '\n\n' + photoMarkdown + '\n\n' + afterFrontmatter;
+            console.log(`Photo inserted from Pexels: ${photo.src.large}`);
+          }
+        } else {
+          console.log('Pexels: no photos found for keyword:', photoKeyword);
+        }
+      } else {
+        console.log('Pexels API returned non-OK status:', pexelsRes.status);
+      }
+    } catch (pexelsError) {
+      console.log('Pexels API call failed, skipping photo:', pexelsError.message);
+    }
+  } else {
+    if (!pexelsApiKey) console.log('PEXELS_API_KEY not set, skipping photo.');
+    if (!photoKeyword) console.log('No PHOTO keyword from Gemini, skipping photo.');
   }
 
   // Save the file
