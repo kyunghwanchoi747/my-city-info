@@ -2,19 +2,13 @@ import Link from "next/link";
 import { getSortedPostsData } from "@/lib/posts";
 
 export const metadata = {
-  title: "블로그 - 성남시 생활 정보",
-  description: "성남시의 유용한 생활 꿀팁과 소식을 전해드리는 블로그입니다.",
+  title: "분당·성남 재개발 - 성남시 생활 정보",
+  description: "1기 신도시 재건축부터 성남 재개발 소식까지, 용어 해설과 최신 동향을 정리합니다.",
 };
 
-export default function BlogListPage() {
-  const posts = getSortedPostsData();
-
-  // 오늘 날짜 표시용
-  const today = new Date().toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+export default function RedevelopmentPage() {
+  const allPosts = getSortedPostsData();
+  const posts = allPosts.filter((post) => post.category === "재개발");
 
   return (
     <div className="min-h-screen bg-amber-50/40 text-neutral-800 font-sans selection:bg-amber-200">
@@ -30,6 +24,7 @@ export default function BlogListPage() {
           <nav className="flex gap-4 text-sm font-medium text-neutral-600">
             <Link href="/" className="hover:text-amber-600 transition-colors">홈</Link>
             <Link href="/blog" className="hover:text-amber-600 transition-colors">블로그</Link>
+            <Link href="/redevelopment" className="text-amber-600 font-semibold transition-colors">재개발</Link>
             <Link href="/about" className="hover:text-amber-600 transition-colors">소개</Link>
           </nav>
         </div>
@@ -39,35 +34,21 @@ export default function BlogListPage() {
       <section className="bg-gradient-to-b from-amber-100/50 to-transparent py-12 px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <span className="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1.5 rounded-full mb-3">
-            생활 밀착형 꿀팁 📝
+            재건축·재개발 안내
           </span>
-          <h2 className="text-3xl font-extrabold text-neutral-900 sm:text-4xl mb-4 leading-tight">
-            성남 생활 백서 블로그
-          </h2>
+          <h1 className="text-3xl font-extrabold text-neutral-900 sm:text-4xl mb-4 leading-tight">
+            분당·성남 재개발
+          </h1>
           <p className="text-base text-neutral-600 leading-relaxed max-w-xl mx-auto">
-            성남시의 소소하고 유용한 팁부터 맛집, 여행 정보까지 유익한 이야기를 만나보세요.
+            1기 신도시 재건축부터 성남 재개발 소식까지, 용어 해설과 최신 동향을 정리합니다.
           </p>
         </div>
       </section>
 
       {/* 메인 콘텐츠 영역 */}
       <main className="max-w-4xl mx-auto px-4 pb-20">
-        {/* 재개발 섹션 링크 배너 */}
-        <div className="mb-8 bg-white border border-amber-200/60 rounded-2xl px-6 py-4 flex items-center justify-between shadow-sm">
-          <p className="text-sm text-neutral-600">
-            분당·성남 재건축·재개발 소식과 용어 해설을 모아봤습니다.
-          </p>
-          <Link
-            href="/redevelopment"
-            className="flex-shrink-0 ml-4 inline-flex items-center gap-1 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors"
-          >
-            재개발 소식 모아보기 →
-          </Link>
-        </div>
-
         <div className="flex items-center gap-2.5 mb-8 border-b border-amber-200/60 pb-3">
-          <span className="text-2xl">✍️</span>
-          <h3 className="text-2xl font-bold text-neutral-900">전체 글 목록</h3>
+          <h2 className="text-2xl font-bold text-neutral-900">재개발 글 목록</h2>
           <span className="text-xs bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-medium ml-1">
             {posts.length}개
           </span>
@@ -75,7 +56,8 @@ export default function BlogListPage() {
 
         {posts.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-2xl border border-amber-100/80 p-8 shadow-sm">
-            <p className="text-neutral-500 text-lg">아직 작성된 블로그 글이 없습니다.</p>
+            <p className="text-neutral-500 text-lg">아직 작성된 재개발 글이 없습니다.</p>
+            <p className="text-neutral-400 text-sm mt-2">곧 업데이트될 예정입니다.</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -93,9 +75,9 @@ export default function BlogListPage() {
                 </div>
 
                 <Link href={`/blog/${post.slug}`} className="block">
-                  <h4 className="text-xl font-bold text-neutral-900 group-hover:text-amber-700 transition-colors mb-2 leading-tight">
+                  <h3 className="text-xl font-bold text-neutral-900 group-hover:text-amber-700 transition-colors mb-2 leading-tight">
                     {post.title}
-                  </h4>
+                  </h3>
                 </Link>
 
                 <p className="text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-2">
@@ -124,25 +106,6 @@ export default function BlogListPage() {
           </div>
         )}
       </main>
-
-      {/* 푸터 영역 */}
-      <footer className="bg-neutral-950 text-neutral-400 py-12 px-4 border-t border-neutral-800">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
-          <div className="space-y-2 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-2 text-white font-bold">
-              <span>🏡</span>
-              <span>우리 동네 생활 정보</span>
-            </div>
-            <p className="text-xs text-neutral-500">
-              데이터 출처: 공공데이터포털(data.go.kr) | 본 서비스는 공공데이터를 기반으로 생성된 정보를 제공합니다.
-            </p>
-          </div>
-          <div className="text-center md:text-right space-y-1">
-            <p>최종 업데이트 날짜: <span className="text-white font-medium">{today}</span></p>
-            <p className="text-xs text-neutral-600">© 2026 my-city-info. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

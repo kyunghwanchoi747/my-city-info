@@ -5,7 +5,9 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '0 22 * * *'   # 한국시간 아침 7시: 공공데이터 글
+    - cron: '0 3 * * *'    # 한국시간 낮 12시: 뉴스 브리핑
+    - cron: '0 9 * * *'    # 한국시간 저녁 6시: 재건축 해설 글
   workflow_dispatch:
 
 permissions:
@@ -30,28 +32,35 @@ jobs:
         run: npm ci
 
       - name: Run Fetch Public Data script
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * *'
         run: node scripts/fetch-public-data.js
         env:
           PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Run Generate Blog Post script
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * *'
         run: node scripts/generate-blog-post.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
 
       - name: Run Fetch Seongnam News script
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 3 * * *'
         run: node scripts/fetch-seongnam-news.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
 
+      - name: Run Generate Redevelopment Post script
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * *'
+        run: node scripts/generate-redev-post.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+
       - name: Commit and Push changes
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name != 'push'
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git config --local user.email "github-actions[bot]@users.noreply.github.com"

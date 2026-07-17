@@ -109,6 +109,10 @@ export default function RootLayout({
           <p>
             © 2026 성남시 생활 정보
             {" | "}
+            <a href="/redevelopment" className="hover:text-white underline underline-offset-2 transition-colors">
+              재개발
+            </a>
+            {" | "}
             <a href="/privacy" className="hover:text-white underline underline-offset-2 transition-colors">
               개인정보처리방침
             </a>
