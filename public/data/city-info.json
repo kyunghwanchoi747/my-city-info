@@ -130,5 +130,16 @@
     "target": "○ 기획재정부령에서 정한 방법 또는 요건에 적합하게 채포한 수산물을 국내로 수입하는 자",
     "summary": "적법하게 채포한 수산물을 국내로 수입하는 자에게 관세감면",
     "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000010"
+  },
+  {
+    "id": "benefit-10",
+    "name": "귀어 창업 및 주택구입 지원(융자)",
+    "category": "혜택",
+    "startDate": "2023-10-27",
+    "endDate": "상시",
+    "location": "시·군·구청",
+    "target": "귀어업인(희망자 포함) 및 재촌비어업인으로서, 사업신청 연도기준 만 65세 이하인 자",
+    "summary": "귀어업 지원자에 창업 및 주택구입 자금 지원 (융자 후 이자 차이를 지원)",
+    "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000012"
   }
 ]

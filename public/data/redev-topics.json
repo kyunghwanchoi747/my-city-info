@@ -1,22 +1,82 @@
 [
-  { "topic": "재건축과 재개발의 차이, 분당은 어디에 해당할까", "done": false },
-  { "topic": "노후계획도시 특별법(1기 신도시 특별법)이란 무엇인가", "done": false },
-  { "topic": "분당 재건축 선도지구란? 선정 기준과 의미", "done": false },
-  { "topic": "재건축 절차 한눈에 보기: 안전진단부터 입주까지", "done": false },
-  { "topic": "안전진단이란? 등급과 통과 기준", "done": false },
-  { "topic": "재건축 조합설립인가, 무엇이 필요한가", "done": false },
-  { "topic": "용적률이란? 재건축에서 왜 중요한가", "done": false },
-  { "topic": "리모델링과 재건축, 무엇이 다른가", "done": false },
-  { "topic": "재건축 초과이익환수제 쉽게 이해하기", "done": false },
-  { "topic": "관리처분인가란? 재건축의 마지막 관문", "done": false },
-  { "topic": "재건축 기간은 보통 얼마나 걸리나", "done": false },
-  { "topic": "이주와 철거 단계, 거주자가 알아야 할 것", "done": false },
-  { "topic": "재건축 시 세입자의 권리와 보호 제도", "done": false },
-  { "topic": "통합재건축이란? 분당 단지들이 뭉치는 이유", "done": false },
-  { "topic": "공공기여(기부채납)란 무엇인가", "done": false },
-  { "topic": "재건축 임대주택 의무비율 이해하기", "done": false },
-  { "topic": "이주비 대출이란? 개념과 절차", "done": false },
-  { "topic": "분당신도시 30년, 조성부터 재건축 논의까지", "done": false },
-  { "topic": "재개발 구역 지정 요건은 무엇인가", "done": false },
-  { "topic": "재건축 조합원 자격과 분양 신청 절차", "done": false }
+  {
+    "topic": "재건축과 재개발의 차이, 분당은 어디에 해당할까",
+    "done": true
+  },
+  {
+    "topic": "노후계획도시 특별법(1기 신도시 특별법)이란 무엇인가",
+    "done": false
+  },
+  {
+    "topic": "분당 재건축 선도지구란? 선정 기준과 의미",
+    "done": false
+  },
+  {
+    "topic": "재건축 절차 한눈에 보기: 안전진단부터 입주까지",
+    "done": false
+  },
+  {
+    "topic": "안전진단이란? 등급과 통과 기준",
+    "done": false
+  },
+  {
+    "topic": "재건축 조합설립인가, 무엇이 필요한가",
+    "done": false
+  },
+  {
+    "topic": "용적률이란? 재건축에서 왜 중요한가",
+    "done": false
+  },
+  {
+    "topic": "리모델링과 재건축, 무엇이 다른가",
+    "done": false
+  },
+  {
+    "topic": "재건축 초과이익환수제 쉽게 이해하기",
+    "done": false
+  },
+  {
+    "topic": "관리처분인가란? 재건축의 마지막 관문",
+    "done": false
+  },
+  {
+    "topic": "재건축 기간은 보통 얼마나 걸리나",
+    "done": false
+  },
+  {
+    "topic": "이주와 철거 단계, 거주자가 알아야 할 것",
+    "done": false
+  },
+  {
+    "topic": "재건축 시 세입자의 권리와 보호 제도",
+    "done": false
+  },
+  {
+    "topic": "통합재건축이란? 분당 단지들이 뭉치는 이유",
+    "done": false
+  },
+  {
+    "topic": "공공기여(기부채납)란 무엇인가",
+    "done": false
+  },
+  {
+    "topic": "재건축 임대주택 의무비율 이해하기",
+    "done": false
+  },
+  {
+    "topic": "이주비 대출이란? 개념과 절차",
+    "done": false
+  },
+  {
+    "topic": "분당신도시 30년, 조성부터 재건축 논의까지",
+    "done": false
+  },
+  {
+    "topic": "재개발 구역 지정 요건은 무엇인가",
+    "done": false
+  },
+  {
+    "topic": "재건축 조합원 자격과 분양 신청 절차",
+    "done": false
+  }
 ]
