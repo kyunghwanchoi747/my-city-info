@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { quoteFrontmatterColons } = require('./yaml-safe');
 
 // XML <item> 블록에서 특정 태그 값 추출 (CDATA 포함)
 function parseTag(block, tag) {
@@ -178,7 +179,7 @@ tags: [성남시, 뉴스브리핑, 지역소식]
         console.log('Gemini에 성남시 브리핑 글 작성 요청 중...');
         let content1 = await generateBriefing(geminiApiKey, prompt1);
         content1 = await insertPexelsPhoto(content1, pexelsApiKey, 'korea city');
-        fs.writeFileSync(briefing1Path, content1, 'utf8');
+        fs.writeFileSync(briefing1Path, quoteFrontmatterColons(content1), 'utf8');
         console.log(`성남시 뉴스 브리핑 저장 완료: ${briefing1Filename}`);
       } catch (err) {
         console.log('성남시 브리핑 생성 실패:', err.message);
@@ -244,7 +245,7 @@ tags: [성남시, 분당재건축, 재개발, 부동산]
         console.log('Gemini에 재개발 브리핑 글 작성 요청 중...');
         let content2 = await generateBriefing(geminiApiKey, prompt2);
         content2 = await insertPexelsPhoto(content2, pexelsApiKey, 'korea city');
-        fs.writeFileSync(briefing2Path, content2, 'utf8');
+        fs.writeFileSync(briefing2Path, quoteFrontmatterColons(content2), 'utf8');
         console.log(`재개발 뉴스 브리핑 저장 완료: ${briefing2Filename}`);
       } catch (err) {
         console.log('재개발 브리핑 생성 실패:', err.message);

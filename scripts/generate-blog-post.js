@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { quoteFrontmatterColons } = require('./yaml-safe');
 
 async function main() {
   const geminiApiKey = process.env.GEMINI_API_KEY;
@@ -215,7 +216,7 @@ tags: [태그1, 태그2, 태그3]
   // Save the file
   const outPath = path.join(postsDir, filename);
   try {
-    fs.writeFileSync(outPath, content, 'utf8');
+    fs.writeFileSync(outPath, quoteFrontmatterColons(content), 'utf8');
     console.log(`Successfully generated and saved blog post: ${filename}`);
   } catch (error) {
     console.error('Error saving blog post file:', error);

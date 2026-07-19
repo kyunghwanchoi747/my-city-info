@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { quoteFrontmatterColons } = require('./yaml-safe');
 
 async function main() {
   const geminiApiKey = process.env.GEMINI_API_KEY;
@@ -154,7 +155,7 @@ tags: [태그1, 태그2, 태그3]
   // 4. 파일 저장
   const outPath = path.join(postsDir, filename);
   try {
-    fs.writeFileSync(outPath, content, 'utf8');
+    fs.writeFileSync(outPath, quoteFrontmatterColons(content), 'utf8');
     console.log(`재개발 해설 글 저장 완료: ${filename}`);
   } catch (err) {
     console.log('파일 저장 실패:', err.message);
