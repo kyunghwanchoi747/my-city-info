@@ -196,5 +196,16 @@
     "target": "어업경영체(어업인, 어업법인 등)",
     "summary": "어업인 및 어업법인을 대상으로 저금리(2.0~3% 또는 변동) 운영자금 지원",
     "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000045"
+  },
+  {
+    "id": "benefit-16",
+    "name": "TAC 참여어업인 경영개선자금 지원",
+    "category": "혜택",
+    "startDate": "2023-10-27",
+    "endDate": "상시",
+    "location": "수협은행 수산해양금융부",
+    "target": "TAC 참여 어업인(단, 제주도 소라 채취 어업인은 및 TAC 참여 1단계 어업인은 제외)",
+    "summary": "TAC 참여 어업인에게 경영개선자금 융자지원",
+    "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000053"
   }
 ]
