@@ -170,7 +170,7 @@ ${searchContext}
 title: "${monthDay} 분당·판교 부동산 트렌드: ${selectedKeywords[0]}, ${selectedKeywords[1]} 최신 동향"
 date: ${todayStr}
 summary: "${selectedKeywords.join(', ')} 등 최근 주목받는 성남/분당 지역 부동산 키워드 최신 반응 요약"
-category: 부동산
+category: 재개발
 tags: [성남부동산, 분당재건축, 판교부동산, ${selectedKeywords[0]}, ${selectedKeywords[1]}]
 ---
 
