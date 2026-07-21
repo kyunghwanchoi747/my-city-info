@@ -207,5 +207,16 @@
     "target": "TAC 참여 어업인(단, 제주도 소라 채취 어업인은 및 TAC 참여 1단계 어업인은 제외)",
     "summary": "TAC 참여 어업인에게 경영개선자금 융자지원",
     "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000053"
+  },
+  {
+    "id": "benefit-17",
+    "name": "연안선박 현대화 지원",
+    "category": "혜택",
+    "startDate": "2024-05-15",
+    "endDate": "상시",
+    "location": "한국해운조합 해운정책팀",
+    "target": "해운법 제4조에 따른 내항여객운송사업자, 해운법 제24조에 따른 내항 화물 운송사업자, 해운법 제33조에 따른 선박대여업자",
+    "summary": "해운법에 따른 내항운송사업자 등에게 연안선박 건조를 위한 대출이자의 2.0~2.5% 지원",
+    "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000055"
   }
 ]
