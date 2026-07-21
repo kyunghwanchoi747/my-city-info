@@ -59,6 +59,15 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
 
+      - name: Run Fetch Naver Trends script
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 9 * * *'
+        run: node scripts/fetch-naver-trends.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+
       - name: Commit and Push changes
         if: github.event_name != 'push'
         run: |
