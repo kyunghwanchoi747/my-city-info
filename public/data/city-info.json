@@ -240,5 +240,16 @@
     "target": "사업 지원 대상자격을 갖춘 어업경영체(신청인 : 어업경영체에 등록된 경영주)로 경영주 및 경영주외 어업인",
     "summary": "사고·질병 등으로 어업활동이 곤란한 어가 대상으로 대체인력 채용비용 지원",
     "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000059"
+  },
+  {
+    "id": "benefit-20",
+    "name": "어업인 역량 강화 교육 지원",
+    "category": "혜택",
+    "startDate": "2023-10-27",
+    "endDate": "상시",
+    "location": "해양수산부 소득복지과",
+    "target": "어업인 및 단체의 역량 강화 교육이 가능한 기관 혹은 단체",
+    "summary": "어업인 단체교육이 가능한 기관 등을 대상으로 역량강화 교육 지원",
+    "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000066"
   }
 ]
