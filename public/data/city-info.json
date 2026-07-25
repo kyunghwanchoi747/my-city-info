@@ -251,5 +251,16 @@
     "target": "어업인 및 단체의 역량 강화 교육이 가능한 기관 혹은 단체",
     "summary": "어업인 단체교육이 가능한 기관 등을 대상으로 역량강화 교육 지원",
     "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000066"
+  },
+  {
+    "id": "benefit-21",
+    "name": "어업인안전조업교육지원",
+    "category": "혜택",
+    "startDate": "2023-10-27",
+    "endDate": "상시",
+    "location": "수협중앙회 어선안전조업본부",
+    "target": "어업인(법정의무교육으로 매년 4시간 교육 이수사항)",
+    "summary": "어업인을 대상으로 안전조업 교육 프로그램 지원",
+    "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000067"
   }
 ]
